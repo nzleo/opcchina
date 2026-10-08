@@ -81,10 +81,16 @@ export type Jump = {
   tone: "primary" | "quiet";
 };
 
+export type StepKind = "core" | "register";
+
 export type Step = {
   id: string;
+  href: string;
   index: string;
   nav: string;
+  kind: StepKind;
+  kindLabel: string;
+  blurb: string;
   title: string;
   hint: string;
   lead: string;
@@ -96,11 +102,15 @@ export type Step = {
 export const steps: Step[] = [
   {
     id: "phone",
+    href: "/phone",
     index: "01",
     nav: "手机号",
+    kind: "core",
+    kindLabel: "我们解决",
+    blurb: "英国 CTE 号码，249 元一年，用来收注册验证码。",
     title: "先有一个能收验证码的号码",
     hint: "收验证码",
-    lead: "海外服务注册时，常常要一个能收短信的号码。一人公司不必自己找：英国 CTE 手机号带号码、服务期内保激活，249 元一年，在火星信号局购买。拿到号码，用它注册 Gmail。",
+    lead: "海外服务注册时，常常要一个能收短信的号码。这是一人公司在国内会卡住的第一件事，由我们来解决：英国 CTE 手机号带号码、服务期内保激活，249 元一年，在火星信号局购买。拿到号码，下一步自己去注册 Gmail。",
     points: [
       "英国 CTE 手机号，办理时分配具体号码",
       "服务期内保激活",
@@ -108,76 +118,76 @@ export const steps: Step[] = [
       "购买：火星信号局",
     ],
     refs: [references.mars, references.googleCreate, references.googleVerify],
-    jumps: [
-      { href: shops.mars.href, label: "去火星信号局购买", tone: "primary" },
-      { href: "#product-phone", label: "查看手机号方案", tone: "quiet" },
-      { href: "#gmail", label: "下一步 · 注册 Gmail", tone: "primary" },
-    ],
+    jumps: [{ href: shops.mars.href, label: "去火星信号局购买", tone: "primary" }],
   },
   {
     id: "gmail",
+    href: "/gmail",
     index: "02",
     nav: "Gmail",
+    kind: "register",
+    kindLabel: "注册步骤",
+    blurb: "用上一步的号码，在 Google 官方页面注册邮箱。",
     title: "用这个号码注册 Gmail",
     hint: "登录身份",
-    lead: "海外 AI 大多用邮箱当登录身份。打开 Google 官方注册页，创建个人用途的 Gmail。页面要求验证手机时，填写第一步的英国号码，再回填短信验证码。这组邮箱留给下一步开通 ChatGPT。",
+    lead: "这一步是注册，不需要我们代办。海外 AI 大多用邮箱当登录身份。打开 Google 官方注册页，创建个人用途的 Gmail。页面要求验证手机时，填写第一步的英国号码，再回填短信验证码。这组邮箱留给下一步开通 ChatGPT。",
     points: [
       "只在 Google 官方页面注册",
       "验证手机时使用第一步的号码",
       "注册完成后保留这组 Gmail",
     ],
     refs: [references.googleSignup, references.googleCreate],
-    jumps: [
-      { href: "#phone", label: "上一步 · 获取手机号", tone: "quiet" },
-      { href: references.googleSignup.href, label: "打开 Google 注册", tone: "primary" },
-      { href: "#chatgpt", label: "下一步 · 开通 ChatGPT", tone: "primary" },
-    ],
+    jumps: [{ href: references.googleSignup.href, label: "打开 Google 注册", tone: "primary" }],
   },
   {
     id: "chatgpt",
+    href: "/chatgpt",
     index: "03",
     nav: "ChatGPT",
+    kind: "register",
+    kindLabel: "注册步骤",
+    blurb: "用这组 Gmail，在官网开通 ChatGPT。",
     title: "用 Gmail 开通 ChatGPT",
     hint: "开始使用",
-    lead: "准备工作的前两步，就是为了这一步。打开 ChatGPT 官网，用刚注册的 Gmail 注册或登录。若页面要求验证邮箱，回到 Gmail 收取验证码。账号可用之后，再处理网络和付款。",
+    lead: "这一步也是注册。打开 ChatGPT 官网，用刚注册的 Gmail 注册或登录。若页面要求验证邮箱，回到 Gmail 收取验证码。账号开好之后，再处理稳定网络和付款，那两件是我们解决的。",
     points: [
       "使用刚注册的 Gmail，不另建一套邮箱",
       "入口是 ChatGPT 官网",
       "邮箱验证码在 Gmail 里查看",
     ],
     refs: [references.chatgpt, references.chatgptFaq, references.chatgptStart],
-    jumps: [
-      { href: "#gmail", label: "上一步 · 注册 Gmail", tone: "quiet" },
-      { href: references.chatgpt.href, label: "打开 ChatGPT", tone: "primary" },
-      { href: "#access", label: "下一步 · 网络", tone: "primary" },
-    ],
+    jumps: [{ href: references.chatgpt.href, label: "打开 ChatGPT", tone: "primary" }],
   },
   {
-    id: "access",
+    id: "network",
+    href: "/network",
     index: "04",
-    nav: "网络",
-    title: "把上网准备好",
+    nav: "稳定的网络",
+    kind: "core",
+    kindLabel: "我们解决",
+    blurb: "二手日本 eSIM 手机写入流量，开热点后稳定上 ChatGPT。",
+    title: "准备一条稳定的网络",
     hint: "用得稳",
-    lead: "人在国内要稳定打开 ChatGPT，先把网络准备好。买一部二手日本 eSIM 手机，在火星信号局的软件里购买流量并写入，再开热点分享。付款用的银联卡单独看下一步。",
+    lead: "人在国内要稳定打开 ChatGPT，网络是第二件核心问题，由我们来解决。买一部二手日本 eSIM 手机，在火星信号局的软件里购买流量并写入，再开热点分享。",
     points: [
       "二手日本 eSIM 手机：淘宝、天猫、京东、闲鱼",
       "流量在火星信号局的软件里购买并写入",
       "打开热点分享，即可稳定上 ChatGPT",
     ],
     refs: [references.mars],
-    jumps: [
-      { href: "#chatgpt", label: "上一步 · 开通 ChatGPT", tone: "quiet" },
-      { href: shops.mars.href, label: "去火星信号局获取软件", tone: "primary" },
-      { href: "#pay", label: "下一步 · 银联卡", tone: "primary" },
-    ],
+    jumps: [{ href: shops.mars.href, label: "去火星信号局获取软件", tone: "primary" }],
   },
   {
     id: "pay",
+    href: "/pay",
     index: "05",
-    nav: "银联卡",
+    nav: "付款",
+    kind: "core",
+    kindLabel: "我们解决",
+    blurb: "银联卡可充 ChatGPT、Claude，也能按当地币种付款。",
     title: "用银联卡付款",
     hint: "付得省",
-    lead: "在 Cardrypto 购买银联卡，开卡优惠码 LEO2026。往卡里充值，支持微信和支付宝入金。它做两件事：能充海外 AI，也能绑国内软件；并且可以按不同币种付款，订阅费跟着当地价格走。",
+    lead: "付款是第三件核心问题。在 Cardrypto 购买银联卡，开卡优惠码 LEO2026。往卡里充值，支持微信和支付宝入金。",
     points: [
       "稳定充值 ChatGPT、Claude",
       "可绑定支付宝、京东、拼多多、美团",
@@ -186,11 +196,7 @@ export const steps: Step[] = [
       "在 Cardrypto 购买，优惠码 LEO2026",
     ],
     refs: [references.cardrypto],
-    jumps: [
-      { href: "#access", label: "上一步 · 网络", tone: "quiet" },
-      { href: shops.cardrypto.href, label: "去 Cardrypto 购买", tone: "primary" },
-      { href: "#product-card", label: "查看银联卡", tone: "quiet" },
-    ],
+    jumps: [{ href: shops.cardrypto.href, label: "去 Cardrypto 购买", tone: "primary" }],
   },
 ];
 
@@ -244,8 +250,8 @@ export const products: Product[] = [
     actionReady: "去火星信号局购买",
     actionPending: "办理入口即将接入",
     jumps: [
-      { href: "#phone", label: "回到第一步", tone: "quiet" },
-      { href: "#gmail", label: "接着注册 Gmail", tone: "primary" },
+      { href: "/phone", label: "手机号说明", tone: "quiet" },
+      { href: "/gmail", label: "接着注册 Gmail", tone: "primary" },
     ],
   },
   {
@@ -265,8 +271,8 @@ export const products: Product[] = [
     actionReady: "去火星信号局获取软件",
     actionPending: "安装包即将提供",
     jumps: [
-      { href: "#access", label: "回到第四步", tone: "quiet" },
-      { href: "#product-card", label: "去看银联卡", tone: "primary" },
+      { href: "/network", label: "网络说明", tone: "quiet" },
+      { href: "/pay", label: "去看付款", tone: "primary" },
     ],
   },
   {
@@ -290,8 +296,8 @@ export const products: Product[] = [
     code: shops.cardrypto.code,
     codeLabel: "开卡优惠码",
     jumps: [
-      { href: "#access", label: "回到第四步", tone: "quiet" },
-      { href: "#product-esim", label: "去看 eSIM 流量", tone: "primary" },
+      { href: "/pay", label: "付款说明", tone: "quiet" },
+      { href: "/network", label: "去看稳定的网络", tone: "primary" },
     ],
   },
 ];

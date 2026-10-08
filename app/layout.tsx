@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces } from "next/font/google";
+import { Frame } from "@/components/frame";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -28,7 +29,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-Hans" className={display.variable}>
-      <body>{children}</body>
+      <body>
+        <Frame>{children}</Frame>
+      </body>
     </html>
   );
 }
