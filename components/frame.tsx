@@ -1,4 +1,20 @@
-import { site, steps, type Jump } from "@/lib/content";
+import { steps, type Jump } from "@/lib/content";
+
+const logoColors = ["c-blue", "c-red", "c-yellow", "c-green"] as const;
+
+function Wordmark() {
+  const name = "opcchina";
+  return (
+    <span className="wordmark">
+      {name.split("").map((letter, index) => (
+        <span key={`${letter}-${index}`} className={logoColors[index % logoColors.length]}>
+          {letter}
+        </span>
+      ))}
+      <span className="tld">.org</span>
+    </span>
+  );
+}
 
 export function JumpLink({ jump }: { jump: Jump }) {
   const external = jump.href.startsWith("http");
@@ -22,11 +38,8 @@ export function Frame({ children }: { children: React.ReactNode }) {
       </a>
       <header className="top">
         <a className="brand" href="/">
-          <span className="mark">OPC</span>
-          <span>
-            <strong>{site.domain}</strong>
-            <small>一人公司 · 海外 AI</small>
-          </span>
+          <Wordmark />
+          <small>一人公司 · 海外 AI</small>
         </a>
         <nav aria-label="五步">
           {steps.map((step) => (
@@ -40,7 +53,9 @@ export function Frame({ children }: { children: React.ReactNode }) {
       {children}
       <footer>
         <div>
-          <p className="footer-brand">{site.domain}</p>
+          <p className="footer-brand">
+            <Wordmark />
+          </p>
           <p>让一人公司在中国用上海外 AI。购买和官方页面会在新窗口打开。</p>
         </div>
         <div className="footer-links">

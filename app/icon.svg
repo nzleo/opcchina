@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#0f6e6a"/>
-  <text x="16" y="21" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#f7fbfa">OPC</text>
+  <rect width="32" height="32" rx="8" fill="#ffffff"/>
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="#dadce0"/>
+  <circle cx="10" cy="16" r="3" fill="#1a73e8"/>
+  <circle cx="16" cy="16" r="3" fill="#ea4335"/>
+  <circle cx="22" cy="16" r="3" fill="#188038"/>
 </svg>
