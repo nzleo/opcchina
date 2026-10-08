@@ -84,9 +84,9 @@ export const steps: Step[] = [
     index: "01",
     nav: "手机号",
     title: "获取手机号",
-    lead: "先拿到一个可以收验证短信的英国号码。我们提供英国 CTY 手机号，方案里包含号码，服务期内保激活，价格 249 元一年。这个号码用于下一步注册 Gmail。",
+    lead: "先拿到一个可以收验证短信的英国号码。我们提供英国 CTE 手机号，方案里包含号码，服务期内保激活，价格 249 元一年。这个号码用于下一步注册 Gmail。",
     points: [
-      "英国 CTY 手机号，办理时分配具体号码",
+      "英国 CTE 手机号，办理时分配具体号码",
       "服务期内保激活",
       "价格 249 元 / 年",
       "用于接收 Gmail 注册验证",
@@ -170,11 +170,11 @@ export const products: Product[] = [
   {
     id: "product-phone",
     kicker: "对应第一步",
-    title: "英国 CTY 手机号",
+    title: "英国 CTE 手机号",
     price: "249 元 / 年",
-    summary: "带号码、保激活。办理后获得英国 CTY 号码，服务期内保持激活，用来接收 Gmail 注册验证。",
+    summary: "带号码、保激活。办理后获得英国 CTE 号码，服务期内保持激活，用来接收 Gmail 注册验证。",
     facts: [
-      { label: "号码", value: "英国 CTY，办理时分配" },
+      { label: "号码", value: "英国 CTE，办理时分配" },
       { label: "激活", value: "服务期内保激活" },
       { label: "用途", value: "注册 Gmail 时接收验证" },
       { label: "价格", value: "249 元 / 年" },
