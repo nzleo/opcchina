@@ -65,7 +65,7 @@ export const references = {
     href: shops.mars.href,
     label: "火星信号局",
     source: "v3.marssignal.com",
-    note: "英国 CTE 手机号和 eSIM 流量卡都在这里购买。",
+    note: "英国 CTE 手机号在这里购买。eSIM 流量也在这里的软件里购买，并写入日本 eSIM 手机。",
   },
   cardrypto: {
     href: shops.cardrypto.href,
@@ -158,21 +158,27 @@ export const steps: Step[] = [
     nav: "网络与付款",
     title: "把网络和付款准备好",
     hint: "用得稳",
-    lead: "人在国内，要用得方便，还得准备两件配套的事。网络用 eSIM 流量：在火星信号局购买流量卡，下载安装 APK，完成流量共享。付款用银联卡：在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
+    lead: "人在国内要稳定打开 ChatGPT，网络和付款要分开准备。网络用 eSIM 流量：先买一部二手日本 eSIM 手机，再在火星信号局的软件里购买流量并写入，然后用热点分享出来。付款用银联卡：在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
     points: [
-      "流量卡在火星信号局购买，安装 APK 后共享流量",
-      "银联卡在 Cardrypto 购买",
-      "开卡优惠码 LEO2026",
-      "入金方式：微信、支付宝",
+      "二手日本 eSIM 手机：淘宝、天猫、京东、闲鱼",
+      "流量在火星信号局的软件里购买并写入",
+      "打开热点分享，即可稳定上 ChatGPT",
+      "银联卡在 Cardrypto 购买，优惠码 LEO2026",
     ],
     refs: [references.mars, references.cardrypto],
     jumps: [
       { href: "#chatgpt", label: "上一步 · 开通 ChatGPT", tone: "quiet" },
-      { href: shops.mars.href, label: "去火星信号局买流量卡", tone: "primary" },
+      { href: shops.mars.href, label: "去火星信号局获取软件", tone: "primary" },
       { href: shops.cardrypto.href, label: "去 Cardrypto 买银联卡", tone: "primary" },
     ],
   },
 ];
+
+export const esimHowTo = [
+  "在淘宝、天猫、京东、闲鱼购买一部二手日本 eSIM 手机。",
+  "下载火星信号局的软件，在软件里购买流量，并写入这部手机。",
+  "打开热点，把流量分享出来，就可以在国内稳定使用 ChatGPT。",
+] as const;
 
 export type Product = {
   id: string;
@@ -215,16 +221,17 @@ export const products: Product[] = [
     id: "product-esim",
     kicker: "对应第四步",
     title: "eSIM 流量",
-    price: "流量共享",
-    summary: "在火星信号局购买 eSIM 流量卡。下载安装 APK 后完成流量共享，用于稳定上网、使用 AI。",
+    price: "稳定上 ChatGPT",
+    summary: "用来在中国稳定打开 ChatGPT。手机在二手平台买，流量在火星信号局的软件里购买并写入，再通过热点分享。",
     facts: [
-      { label: "形态", value: "eSIM 流量" },
-      { label: "使用方式", value: "安装 APK，共享流量" },
-      { label: "用途", value: "稳定上网，使用 AI" },
-      { label: "购买", value: "火星信号局" },
+      { label: "手机", value: "二手日本 eSIM 手机" },
+      { label: "哪里买手机", value: "淘宝、天猫、京东、闲鱼" },
+      { label: "流量", value: "软件里购买并写入" },
+      { label: "使用", value: "热点分享后上网" },
+      { label: "软件", value: "火星信号局" },
     ],
     actionHref: shops.mars.href,
-    actionReady: "去火星信号局购买",
+    actionReady: "去火星信号局获取软件",
     actionPending: "安装包即将提供",
     jumps: [
       { href: "#access", label: "回到第四步", tone: "quiet" },
@@ -251,7 +258,7 @@ export const products: Product[] = [
     codeLabel: "开卡优惠码",
     jumps: [
       { href: "#access", label: "回到第四步", tone: "quiet" },
-      { href: "#product-esim", label: "去看流量卡", tone: "primary" },
+      { href: "#product-esim", label: "去看 eSIM 流量", tone: "primary" },
     ],
   },
 ];

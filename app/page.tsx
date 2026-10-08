@@ -1,4 +1,4 @@
-import { products, references, shops, site, steps, type Jump, type Reference } from "@/lib/content";
+import { esimHowTo, products, references, shops, site, steps, type Jump, type Reference } from "@/lib/content";
 
 function JumpLink({ jump }: { jump: Jump }) {
   const external = jump.href.startsWith("http");
@@ -143,18 +143,28 @@ export default function HomePage() {
               <h2>{step.title}</h2>
               <p className="lead">{step.lead}</p>
               {step.id === "access" ? (
-                <div className="split">
-                  <a href="#product-esim">
-                    <span>网络</span>
-                    <strong>eSIM 流量</strong>
-                    <p>在火星信号局购买。下载安装 APK，完成流量共享，用来稳定上网、使用 AI。</p>
-                  </a>
-                  <a href="#product-card">
-                    <span>付款</span>
-                    <strong>银联卡</strong>
-                    <p>在 Cardrypto 购买。开卡优惠码 LEO2026。充值支持微信和支付宝入金。</p>
-                  </a>
-                </div>
+                <>
+                  <ol className="howto">
+                    {esimHowTo.map((item, index) => (
+                      <li key={item}>
+                        <b>{index + 1}</b>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <div className="split">
+                    <a href="#product-esim">
+                      <span>网络</span>
+                      <strong>eSIM 流量</strong>
+                      <p>二手日本 eSIM 手机写入流量后，开热点即可在国内稳定上 ChatGPT。</p>
+                    </a>
+                    <a href="#product-card">
+                      <span>付款</span>
+                      <strong>银联卡</strong>
+                      <p>在 Cardrypto 购买。开卡优惠码 LEO2026。充值支持微信和支付宝入金。</p>
+                    </a>
+                  </div>
+                </>
               ) : null}
               <div className="jumps">
                 {step.jumps.map((jump) => (
@@ -177,7 +187,7 @@ export default function HomePage() {
       <section id="products" className="desk" aria-labelledby="products-title">
         <div className="desk-head">
           <h2 id="products-title">去哪里办</h2>
-          <p>英国 CTE 手机号和流量卡在火星信号局。银联卡在 Cardrypto，开卡优惠码 LEO2026。</p>
+          <p>英国 CTE 手机号在火星信号局。eSIM 流量先买二手日本手机，再在火星信号局的软件里写入。银联卡在 Cardrypto，开卡优惠码 LEO2026。</p>
         </div>
         <div className="ledger">
           {products.map((product) => (
@@ -186,6 +196,16 @@ export default function HomePage() {
               <h3>{product.title}</h3>
               <p className="price">{product.price}</p>
               <p className="summary">{product.summary}</p>
+              {product.id === "product-esim" ? (
+                <ol className="howto">
+                  {esimHowTo.map((item, index) => (
+                    <li key={item}>
+                      <b>{index + 1}</b>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
               {product.code ? (
                 <p className="promo">
                   <span>{product.codeLabel}</span>

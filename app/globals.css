@@ -318,6 +318,25 @@ main { border-bottom: 1px solid var(--ink); }
 .lesson[data-n="03"] .refs p { color: rgba(246, 241, 232, 0.68); }
 .source { margin-right: 0.35rem; color: var(--cinnabar); }
 
+.howto {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.howto li {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.55rem;
+  align-items: start;
+}
+.howto b {
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--cinnabar);
+  line-height: 1.7;
+}
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 1.2rem; }
 .split a {
   display: block;
