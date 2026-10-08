@@ -71,7 +71,7 @@ export const references = {
     href: shops.cardrypto.href,
     label: "Cardrypto",
     source: "cardrypto.com",
-    note: `银联卡在这里购买。开卡优惠码 ${shops.cardrypto.code}。`,
+    note: `银联卡在这里购买。开卡优惠码 ${shops.cardrypto.code}。可按不同币种支付，也能绑定国内常用软件。`,
   },
 } as const satisfies Record<string, Reference>;
 
@@ -149,30 +149,61 @@ export const steps: Step[] = [
     jumps: [
       { href: "#gmail", label: "上一步 · 注册 Gmail", tone: "quiet" },
       { href: references.chatgpt.href, label: "打开 ChatGPT", tone: "primary" },
-      { href: "#access", label: "下一步 · 流量与付款", tone: "primary" },
+      { href: "#access", label: "下一步 · 网络", tone: "primary" },
     ],
   },
   {
     id: "access",
     index: "04",
-    nav: "网络与付款",
-    title: "把网络和付款准备好",
+    nav: "网络",
+    title: "把上网准备好",
     hint: "用得稳",
-    lead: "人在国内要稳定打开 ChatGPT，网络和付款要分开准备。网络用 eSIM 流量：先买一部二手日本 eSIM 手机，再在火星信号局的软件里购买流量并写入，然后用热点分享出来。付款用银联卡：在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
+    lead: "人在国内要稳定打开 ChatGPT，先把网络准备好。买一部二手日本 eSIM 手机，在火星信号局的软件里购买流量并写入，再开热点分享。付款用的银联卡单独看下一步。",
     points: [
       "二手日本 eSIM 手机：淘宝、天猫、京东、闲鱼",
       "流量在火星信号局的软件里购买并写入",
       "打开热点分享，即可稳定上 ChatGPT",
-      "银联卡在 Cardrypto 购买，优惠码 LEO2026",
     ],
-    refs: [references.mars, references.cardrypto],
+    refs: [references.mars],
     jumps: [
       { href: "#chatgpt", label: "上一步 · 开通 ChatGPT", tone: "quiet" },
       { href: shops.mars.href, label: "去火星信号局获取软件", tone: "primary" },
-      { href: shops.cardrypto.href, label: "去 Cardrypto 买银联卡", tone: "primary" },
+      { href: "#pay", label: "下一步 · 银联卡", tone: "primary" },
+    ],
+  },
+  {
+    id: "pay",
+    index: "05",
+    nav: "银联卡",
+    title: "用银联卡付款",
+    hint: "付得省",
+    lead: "在 Cardrypto 购买银联卡，开卡优惠码 LEO2026。往卡里充值，支持微信和支付宝入金。它做两件事：能充海外 AI，也能绑国内软件；并且可以按不同币种付款，订阅费跟着当地价格走。",
+    points: [
+      "稳定充值 ChatGPT、Claude",
+      "可绑定支付宝、京东、拼多多、美团",
+      "支持日元、台湾元等不同币种",
+      "按当地订阅价付款，费用会更低",
+      "在 Cardrypto 购买，优惠码 LEO2026",
+    ],
+    refs: [references.cardrypto],
+    jumps: [
+      { href: "#access", label: "上一步 · 网络", tone: "quiet" },
+      { href: shops.cardrypto.href, label: "去 Cardrypto 购买", tone: "primary" },
+      { href: "#product-card", label: "查看银联卡", tone: "quiet" },
     ],
   },
 ];
+
+export const cardBriefs = [
+  {
+    title: "适用范围",
+    body: "可以稳定充值 ChatGPT、Claude。同时能绑定支付宝、京东、拼多多、美团等国内软件。",
+  },
+  {
+    title: "支付优势",
+    body: "支持用不同币种支付。日本的 ChatGPT 可以按日元价格付，台湾的可以按台湾元付。每个地区的订阅费不一样，用当地币种付，订阅价格会降下来。",
+  },
+] as const;
 
 export const esimHowTo = [
   "在淘宝、天猫、京东、闲鱼购买一部二手日本 eSIM 手机。",
@@ -240,13 +271,15 @@ export const products: Product[] = [
   },
   {
     id: "product-card",
-    kicker: "对应第四步",
+    kicker: "对应第五步",
     title: "银联卡",
     price: "微信 / 支付宝入金",
-    summary: "在 Cardrypto 购买银联卡，用来完成付款。开卡时填写优惠码 LEO2026。往卡里充值时，支持微信和支付宝入金。",
+    summary: "在 Cardrypto 购买。开卡优惠码 LEO2026，入金支持微信和支付宝。",
     facts: [
-      { label: "卡片", value: "银联卡" },
-      { label: "用途", value: "完成付款" },
+      { label: "充值", value: "ChatGPT、Claude" },
+      { label: "国内绑定", value: "支付宝、京东、拼多多、美团" },
+      { label: "币种", value: "日元、台湾元等" },
+      { label: "价格", value: "按当地订阅价付" },
       { label: "入金", value: "微信、支付宝" },
       { label: "购买", value: "Cardrypto" },
       { label: "开卡优惠码", value: shops.cardrypto.code },

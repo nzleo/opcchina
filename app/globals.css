@@ -337,6 +337,30 @@ main { border-bottom: 1px solid var(--ink); }
   color: var(--cinnabar);
   line-height: 1.7;
 }
+.briefs {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.15rem;
+}
+.briefs article {
+  border: 1px solid var(--ink);
+  padding: 0.85rem 0.95rem 0.95rem;
+  background: var(--paper-2);
+}
+.briefs h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.briefs p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.pass-pay .briefs article {
+  background: transparent;
+  border-color: rgba(246, 241, 232, 0.35);
+}
+.pass-pay .briefs h3 { color: var(--cream); }
+.pass-pay .briefs p { color: rgba(246, 241, 232, 0.78); }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 1.2rem; }
 .split a {
   display: block;

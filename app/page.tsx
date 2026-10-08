@@ -1,4 +1,14 @@
-import { esimHowTo, products, references, shops, site, steps, type Jump, type Reference } from "@/lib/content";
+import {
+  cardBriefs,
+  esimHowTo,
+  products,
+  references,
+  shops,
+  site,
+  steps,
+  type Jump,
+  type Reference,
+} from "@/lib/content";
 
 function JumpLink({ jump }: { jump: Jump }) {
   const external = jump.href.startsWith("http");
@@ -67,7 +77,7 @@ export default function HomePage() {
   return (
     <>
       <a className="skip" href="#path">
-        跳到四件准备
+        跳到准备工作
       </a>
       <header className="top">
         <a className="brand" href="#top">
@@ -91,7 +101,7 @@ export default function HomePage() {
           <p className="eyebrow">给在中国的一人公司</p>
           <h1>
             <span className="line">要用海外 AI</span>
-            <span className="line accent">先做完这四件准备</span>
+            <span className="line accent">先做完这五件准备</span>
           </h1>
           <p className="lede">
             ChatGPT 这类工具，注册和续费用的是海外那一套。人在国内把一人公司做起来，先备好能收短信的号码、Gmail、稳定网络，还有一张能付款的卡。下面按这个顺序准备。
@@ -137,7 +147,7 @@ export default function HomePage() {
                   <small>元 / 年</small>
                 </em>
               ) : null}
-              {step.id === "access" ? <em className="code-mark">LEO2026</em> : null}
+              {step.id === "pay" ? <em className="code-mark">LEO2026</em> : null}
             </div>
             <div className="lesson-copy">
               <h2>{step.title}</h2>
@@ -158,13 +168,23 @@ export default function HomePage() {
                       <strong>eSIM 流量</strong>
                       <p>二手日本 eSIM 手机写入流量后，开热点即可在国内稳定上 ChatGPT。</p>
                     </a>
-                    <a href="#product-card">
+                    <a href="#pay">
                       <span>付款</span>
                       <strong>银联卡</strong>
-                      <p>在 Cardrypto 购买。开卡优惠码 LEO2026。充值支持微信和支付宝入金。</p>
+                      <p>可充 ChatGPT、Claude，也能按日元、台湾元等当地价格付。下一步单独说明。</p>
                     </a>
                   </div>
                 </>
+              ) : null}
+              {step.id === "pay" ? (
+                <div className="briefs">
+                  {cardBriefs.map((brief) => (
+                    <article key={brief.title}>
+                      <h3>{brief.title}</h3>
+                      <p>{brief.body}</p>
+                    </article>
+                  ))}
+                </div>
               ) : null}
               <div className="jumps">
                 {step.jumps.map((jump) => (
@@ -187,7 +207,7 @@ export default function HomePage() {
       <section id="products" className="desk" aria-labelledby="products-title">
         <div className="desk-head">
           <h2 id="products-title">去哪里办</h2>
-          <p>英国 CTE 手机号在火星信号局。eSIM 流量先买二手日本手机，再在火星信号局的软件里写入。银联卡在 Cardrypto，开卡优惠码 LEO2026。</p>
+          <p>英国 CTE 手机号在火星信号局。eSIM 流量先买二手日本手机，再在软件里写入。银联卡在 Cardrypto，开卡优惠码 LEO2026，可充 ChatGPT、Claude，也能按当地币种付款。</p>
         </div>
         <div className="ledger">
           {products.map((product) => (
@@ -205,6 +225,16 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ol>
+              ) : null}
+              {product.id === "product-card" ? (
+                <div className="briefs">
+                  {cardBriefs.map((brief) => (
+                    <article key={brief.title}>
+                      <h3>{brief.title}</h3>
+                      <p>{brief.body}</p>
+                    </article>
+                  ))}
+                </div>
               ) : null}
               {product.code ? (
                 <p className="promo">
