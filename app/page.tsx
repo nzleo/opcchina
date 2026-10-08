@@ -132,12 +132,12 @@ export default function HomePage() {
                   <a href="#product-esim">
                     <span>流量</span>
                     <strong>eSIM 流量</strong>
-                    <p>下载安装 APK，完成流量共享，稳定上网使用 AI。</p>
+                    <p>在火星信号局购买。下载安装 APK，完成流量共享，稳定上网使用 AI。</p>
                   </a>
                   <a href="#product-card">
                     <span>付款</span>
                     <strong>银联卡</strong>
-                    <p>用银联卡完成付款。充值支持微信和支付宝入金。</p>
+                    <p>在 Cardrypto 购买，开卡优惠码 LEO2026。充值支持微信和支付宝入金。</p>
                   </a>
                 </div>
               ) : null}
@@ -155,7 +155,7 @@ export default function HomePage() {
         <section id="products" className="products" aria-labelledby="products-title">
           <div className="section-head">
             <h2 id="products-title">我们提供的三项</h2>
-            <p>手机号、流量、银联卡。办理和安装包地址接入后，按钮会直接打开。</p>
+            <p>英国 CTE 手机号和流量卡在火星信号局购买。银联卡在 Cardrypto 购买，开卡优惠码 LEO2026。</p>
           </div>
           <div className="catalog">
             {products.map((product) => (
@@ -164,6 +164,12 @@ export default function HomePage() {
                 <h3>{product.title}</h3>
                 <p className="price">{product.price}</p>
                 <p>{product.summary}</p>
+                {product.code ? (
+                  <p className="promo">
+                    <span>{product.codeLabel}</span>
+                    <strong>{product.code}</strong>
+                  </p>
+                ) : null}
                 <dl>
                   {product.facts.map((fact) => (
                     <div key={fact.label}>

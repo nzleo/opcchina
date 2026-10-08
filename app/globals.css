@@ -296,10 +296,27 @@ h1 {
 }
 .catalog article > p:last-of-type,
 .catalog article > p:nth-of-type(3) { color: var(--muted); }
+.promo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.9rem 0 0;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.75rem;
+  background: #f4ebe3;
+  border: 1px dashed var(--clay);
+}
+.promo span { color: var(--clay); font-size: 0.82rem; letter-spacing: 0.06em; }
+.promo strong {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+}
 .catalog dl { margin: 0.8rem 0 0; }
 .catalog dl div {
   display: grid;
-  grid-template-columns: 4.5rem 1fr;
+  grid-template-columns: 5.6rem 1fr;
   gap: 0.5rem;
   padding: 0.4rem 0;
   border-top: 1px solid var(--line);

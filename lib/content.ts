@@ -5,14 +5,16 @@ export const site = {
     "从英国手机号、Gmail、ChatGPT，到 eSIM 流量和银联卡付款。opcchina.org 把 AI 注册与持续使用收成四步，每一步都有资料和跳转。",
 } as const;
 
-/**
- * 办理页和安装包地址。留空时按钮显示「即将接入」，不会跳到空白链接。
- * 有地址后填在这里即可。
- */
-export const actions = {
-  phoneOrderUrl: "",
-  apkUrl: "",
-  cardOrderUrl: "",
+export const shops = {
+  mars: {
+    name: "火星信号局",
+    href: "https://v3.marssignal.com",
+  },
+  cardrypto: {
+    name: "Cardrypto",
+    href: "https://cardrypto.com",
+    code: "LEO2026",
+  },
 } as const;
 
 export type Reference = {
@@ -59,6 +61,18 @@ export const references = {
     source: "OpenAI Academy",
     note: "官方入门：打开 ChatGPT，发出第一条对话。",
   },
+  mars: {
+    href: shops.mars.href,
+    label: "火星信号局",
+    source: "v3.marssignal.com",
+    note: "英国 CTE 手机号和 eSIM 流量卡都在这里购买。",
+  },
+  cardrypto: {
+    href: shops.cardrypto.href,
+    label: "Cardrypto",
+    source: "cardrypto.com",
+    note: `银联卡在这里购买。开卡优惠码 ${shops.cardrypto.code}。`,
+  },
 } as const satisfies Record<string, Reference>;
 
 export type Jump = {
@@ -84,15 +98,16 @@ export const steps: Step[] = [
     index: "01",
     nav: "手机号",
     title: "获取手机号",
-    lead: "先拿到一个可以收验证短信的英国号码。我们提供英国 CTE 手机号，方案里包含号码，服务期内保激活，价格 249 元一年。这个号码用于下一步注册 Gmail。",
+    lead: "先拿到一个可以收验证短信的英国号码。我们提供英国 CTE 手机号，方案里包含号码，服务期内保激活，价格 249 元一年。在火星信号局购买，然后用它注册 Gmail。",
     points: [
       "英国 CTE 手机号，办理时分配具体号码",
       "服务期内保激活",
       "价格 249 元 / 年",
-      "用于接收 Gmail 注册验证",
+      "购买：火星信号局",
     ],
-    refs: [references.googleCreate, references.googleVerify],
+    refs: [references.mars, references.googleCreate, references.googleVerify],
     jumps: [
+      { href: shops.mars.href, label: "去火星信号局购买", tone: "primary" },
       { href: "#product-phone", label: "查看手机号方案", tone: "quiet" },
       { href: "#gmail", label: "下一步 · 注册 Gmail", tone: "primary" },
     ],
@@ -138,17 +153,18 @@ export const steps: Step[] = [
     index: "04",
     nav: "流量与付款",
     title: "稳定上网，并准备付款",
-    lead: "账号开通之后还有两件配套的事。上网用 eSIM 流量：下载安装 APK，完成流量共享，让使用 AI 时网络更稳定。付款用银联卡，充值支持微信和支付宝入金。",
+    lead: "账号开通之后还有两件配套的事。上网用 eSIM 流量：在火星信号局购买流量卡，下载安装 APK，完成流量共享。付款用银联卡，在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
     points: [
-      "eSIM 流量，通过 APK 做流量共享",
-      "银联卡用于完成付款",
+      "流量卡在火星信号局购买，安装 APK 后共享流量",
+      "银联卡在 Cardrypto 购买",
+      "开卡优惠码 LEO2026",
       "入金方式：微信、支付宝",
     ],
-    refs: [references.chatgptFaq],
+    refs: [references.mars, references.cardrypto],
     jumps: [
       { href: "#chatgpt", label: "上一步 · 开通 ChatGPT", tone: "quiet" },
-      { href: "#product-esim", label: "查看流量卡", tone: "primary" },
-      { href: "#product-card", label: "查看银联卡", tone: "primary" },
+      { href: shops.mars.href, label: "去火星信号局买流量卡", tone: "primary" },
+      { href: shops.cardrypto.href, label: "去 Cardrypto 买银联卡", tone: "primary" },
     ],
   },
 ];
@@ -163,6 +179,8 @@ export type Product = {
   actionHref: string;
   actionReady: string;
   actionPending: string;
+  code?: string;
+  codeLabel?: string;
   jumps: Jump[];
 };
 
@@ -172,15 +190,16 @@ export const products: Product[] = [
     kicker: "对应第一步",
     title: "英国 CTE 手机号",
     price: "249 元 / 年",
-    summary: "带号码、保激活。办理后获得英国 CTE 号码，服务期内保持激活，用来接收 Gmail 注册验证。",
+    summary: "带号码、保激活。在火星信号局购买英国 CTE 号码，服务期内保持激活，用来接收 Gmail 注册验证。",
     facts: [
       { label: "号码", value: "英国 CTE，办理时分配" },
       { label: "激活", value: "服务期内保激活" },
       { label: "用途", value: "注册 Gmail 时接收验证" },
+      { label: "购买", value: "火星信号局" },
       { label: "价格", value: "249 元 / 年" },
     ],
-    actionHref: actions.phoneOrderUrl,
-    actionReady: "办理手机号",
+    actionHref: shops.mars.href,
+    actionReady: "去火星信号局购买",
     actionPending: "办理入口即将接入",
     jumps: [
       { href: "#phone", label: "回到第一步", tone: "quiet" },
@@ -192,14 +211,15 @@ export const products: Product[] = [
     kicker: "对应第四步",
     title: "eSIM 流量",
     price: "流量共享",
-    summary: "提供 eSIM 流量。下载安装 APK 后完成流量共享，用于稳定上网、使用 AI。",
+    summary: "在火星信号局购买 eSIM 流量卡。下载安装 APK 后完成流量共享，用于稳定上网、使用 AI。",
     facts: [
       { label: "形态", value: "eSIM 流量" },
       { label: "使用方式", value: "安装 APK，共享流量" },
       { label: "用途", value: "稳定上网，使用 AI" },
+      { label: "购买", value: "火星信号局" },
     ],
-    actionHref: actions.apkUrl,
-    actionReady: "下载 APK",
+    actionHref: shops.mars.href,
+    actionReady: "去火星信号局购买",
     actionPending: "安装包即将提供",
     jumps: [
       { href: "#access", label: "回到第四步", tone: "quiet" },
@@ -211,15 +231,19 @@ export const products: Product[] = [
     kicker: "对应第四步",
     title: "银联卡",
     price: "微信 / 支付宝入金",
-    summary: "提供银联卡完成付款。往卡里充值时，支持微信和支付宝入金。",
+    summary: "在 Cardrypto 购买银联卡，用来完成付款。开卡时填写优惠码 LEO2026。往卡里充值时，支持微信和支付宝入金。",
     facts: [
       { label: "卡片", value: "银联卡" },
       { label: "用途", value: "完成付款" },
       { label: "入金", value: "微信、支付宝" },
+      { label: "购买", value: "Cardrypto" },
+      { label: "开卡优惠码", value: shops.cardrypto.code },
     ],
-    actionHref: actions.cardOrderUrl,
-    actionReady: "办理银联卡",
+    actionHref: shops.cardrypto.href,
+    actionReady: "去 Cardrypto 购买",
     actionPending: "办理入口即将接入",
+    code: shops.cardrypto.code,
+    codeLabel: "开卡优惠码",
     jumps: [
       { href: "#access", label: "回到第四步", tone: "quiet" },
       { href: "#product-esim", label: "去看流量卡", tone: "primary" },
