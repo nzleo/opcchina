@@ -1,8 +1,8 @@
 export const site = {
   domain: "opcchina.org",
-  title: "OPC China · AI 注册全流程",
+  title: "OPC China · 一人公司如何用上海外 AI",
   description:
-    "从英国手机号、Gmail、ChatGPT，到 eSIM 流量和银联卡付款。opcchina.org 把 AI 注册与持续使用收成四步，每一步都有资料和跳转。",
+    "给在中国的一人公司：用海外 AI 之前，先准备英国手机号、Gmail、ChatGPT，以及稳定网络和能付款的银联卡。",
 } as const;
 
 export const shops = {
@@ -86,6 +86,7 @@ export type Step = {
   index: string;
   nav: string;
   title: string;
+  hint: string;
   lead: string;
   points: string[];
   refs: Reference[];
@@ -97,8 +98,9 @@ export const steps: Step[] = [
     id: "phone",
     index: "01",
     nav: "手机号",
-    title: "获取手机号",
-    lead: "先拿到一个可以收验证短信的英国号码。我们提供英国 CTE 手机号，方案里包含号码，服务期内保激活，价格 249 元一年。在火星信号局购买，然后用它注册 Gmail。",
+    title: "先有一个能收验证码的号码",
+    hint: "收验证码",
+    lead: "海外服务注册时，常常要一个能收短信的号码。一人公司不必自己找：英国 CTE 手机号带号码、服务期内保激活，249 元一年，在火星信号局购买。拿到号码，用它注册 Gmail。",
     points: [
       "英国 CTE 手机号，办理时分配具体号码",
       "服务期内保激活",
@@ -116,8 +118,9 @@ export const steps: Step[] = [
     id: "gmail",
     index: "02",
     nav: "Gmail",
-    title: "通过手机号注册 Gmail",
-    lead: "打开 Google 官方注册页，创建个人用途的 Gmail。页面要求验证手机时，填写第一步的英国号码，再回填短信验证码。邮箱和密码留给下一步开通 ChatGPT。",
+    title: "用这个号码注册 Gmail",
+    hint: "登录身份",
+    lead: "海外 AI 大多用邮箱当登录身份。打开 Google 官方注册页，创建个人用途的 Gmail。页面要求验证手机时，填写第一步的英国号码，再回填短信验证码。这组邮箱留给下一步开通 ChatGPT。",
     points: [
       "只在 Google 官方页面注册",
       "验证手机时使用第一步的号码",
@@ -134,8 +137,9 @@ export const steps: Step[] = [
     id: "chatgpt",
     index: "03",
     nav: "ChatGPT",
-    title: "通过 Gmail 开通 ChatGPT",
-    lead: "打开 ChatGPT 官网，用上一步的 Gmail 注册或登录。若页面要求验证邮箱，回到 Gmail 收取验证码。账号可用之后，再处理上网和付款。",
+    title: "用 Gmail 开通 ChatGPT",
+    hint: "开始使用",
+    lead: "准备工作的前两步，就是为了这一步。打开 ChatGPT 官网，用刚注册的 Gmail 注册或登录。若页面要求验证邮箱，回到 Gmail 收取验证码。账号可用之后，再处理网络和付款。",
     points: [
       "使用刚注册的 Gmail，不另建一套邮箱",
       "入口是 ChatGPT 官网",
@@ -151,9 +155,10 @@ export const steps: Step[] = [
   {
     id: "access",
     index: "04",
-    nav: "流量与付款",
-    title: "稳定上网，并准备付款",
-    lead: "账号开通之后还有两件配套的事。上网用 eSIM 流量：在火星信号局购买流量卡，下载安装 APK，完成流量共享。付款用银联卡，在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
+    nav: "网络与付款",
+    title: "把网络和付款准备好",
+    hint: "用得稳",
+    lead: "人在国内，要用得方便，还得准备两件配套的事。网络用 eSIM 流量：在火星信号局购买流量卡，下载安装 APK，完成流量共享。付款用银联卡：在 Cardrypto 购买，开卡优惠码 LEO2026，充值支持微信和支付宝入金。",
     points: [
       "流量卡在火星信号局购买，安装 APK 后共享流量",
       "银联卡在 Cardrypto 购买",
